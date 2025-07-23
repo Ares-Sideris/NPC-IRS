@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Инженерный центр — Статистика расходных материалов</title>
+  <link rel="stylesheet" href="stats.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Подключение библиотеки графиков (Chart.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app">
+
+    <!-- SIDEBAR + HEADER можно взять из index.html -->
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+      <header class="main__header">
+        <!-- ваш хедер -->
+      </header>
+
+      <section class="main__content stats-page">
+        <h1>Статистика расходных материалов</h1>
+
+        <!-- 1. Виджеты -->
+        <div class="stats-widgets">
+          <div class="widget">
+            <h3>Потребность, шт.</h3>
+            <p class="value">152</p>
+          </div>
+          <div class="widget">
+            <h3>В наличии, шт.</h3>
+            <p class="value">340</p>
+          </div>
+          <!-- при необходимости ещё -->
+        </div>
+
+        <!-- 2. Фильтры -->
+        <div class="stats-filters">
+          <div class="filter-group">
+            <label>Область</label>
+            <select>
+              <option value="all">Вся Россия</option>
+              <option value="okrug">Окрг Урал</option>
+              <option value="region">Курганская обл.</option>
+              <option value="object">Объект №1</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Тип статистики</label>
+            <select>
+              <option value="demand">По потребности</option>
+              <option value="supply">По поставкам</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Модель</label>
+            <select multiple>
+              <option>HP LaserJet M141a</option>
+              <option>HP M111</option>
+              <option>Canon LBP6030</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 3. Графики -->
+        <div class="stats-charts">
+          <div class="chart-container">
+            <canvas id="chart-demand"></canvas>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-stock-vs-demand"></canvas>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Пример данных для демонстрации
+    const labels = ['M141a', 'M111', 'LBP6030'];
+    const demandData = [60, 45, 47];
+    const stockData = [80, 100, 160];
+
+    // Столбчатый график
+    new Chart(document.getElementById('chart-demand'), {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Потребность',
+          data: demandData,
+          backgroundColor: 'rgba(0,105,217,0.6)'
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true },
+          x: { title: { display: true, text: 'Модель' } }
+        }
+      }
+    });
+
+    // Круговой график
+    new Chart(document.getElementById('chart-stock-vs-demand'), {
+      type: 'pie',
+      data: {
+        labels: ['В наличии', 'Потребность'],
+        datasets: [{
+          data: [ stockData.reduce((a,b)=>a+b,0), demandData.reduce((a,b)=>a+b,0) ],
+          backgroundColor: ['rgba(0,105,217,0.6)', 'rgba(255,159,64,0.6)']
+        }]
+      }
+    });
+  </script>
+</body>
+</html>
