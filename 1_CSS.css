@@ -1,0 +1,132 @@
+/* Корневой сетап */
+:root {
+  --primary-blue: #0069d9;
+  --primary-blue-hover: #0056b3;
+  --bg-light: #f8f9fa;
+  --border-light: #e0e0e0;
+  --text-grey: #555;
+  --font-base: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0; padding: 0;
+}
+body {
+  font-family: var(--font-base);
+  background: #f0f2f5;
+  color: #333;
+}
+
+/* Layout */
+.app {
+  display: flex;
+  height: 100vh;
+}
+.sidebar {
+  width: 240px;
+  background: #fff;
+  border-right: 1px solid var(--border-light);
+  padding: 24px 16px;
+}
+.logo {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 32px;
+}
+.nav-item {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: #333;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+.nav-item.active, .nav-item:hover {
+  background: var(--bg-light);
+}
+
+/* Main */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: #fff;
+  align-items: center;
+  border-bottom: 1px solid var(--border-light);
+}
+.search {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+}
+.btn-icon {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+.btn-primary {
+  padding: 8px 16px;
+  background: var(--primary-blue);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: var(--primary-blue-hover);
+}
+
+.content {
+  padding: 24px;
+  overflow: auto;
+}
+.content h1 {
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+/* Таблица */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.table th, .table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-light);
+  text-align: left;
+}
+.table thead {
+  background: var(--bg-light);
+}
+.table input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+}
+.actions {
+  display: flex;
+  gap: 4px;
+}
+.btn-add, .btn-remove {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.btn-add:hover { color: green; }
+.btn-remove:hover { color: red; }
