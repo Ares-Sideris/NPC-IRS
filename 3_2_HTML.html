@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Инженерный центр — Интервалы поставок</title>
+  <link rel="stylesheet" href="supplies.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Chart.js для отрисовки графиков -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app">
+
+    <!-- здесь можно подключить ваш sidebar и header из index.html -->
+
+    <main class="main">
+      <header class="main__header">
+        <!-- ваш хедер -->
+      </header>
+
+      <section class="main__content stats-page">
+        <h1>Статистика интервалов поставок</h1>
+
+        <!-- 1. Виджеты -->
+        <div class="stats-widgets">
+          <div class="widget">
+            <h3>Средний интервал, дни</h3>
+            <p class="value">14</p>
+          </div>
+          <div class="widget">
+            <h3>Максимальный интервал, дни</h3>
+            <p class="value">30</p>
+          </div>
+          <div class="widget">
+            <h3>Мин. интервал, дни</h3>
+            <p class="value">7</p>
+          </div>
+        </div>
+
+        <!-- 2. Фильтры -->
+        <div class="stats-filters">
+          <div class="filter-group">
+            <label>Период</label>
+            <div class="date-range">
+              <input type="date" value="2025-01-01">
+              <span>—</span>
+              <input type="date" value="2025-06-30">
+            </div>
+          </div>
+          <div class="filter-group">
+            <label>Область</label>
+            <select>
+              <option value="all">Вся Россия</option>
+              <option value="okrug">Уральский округ</option>
+              <option value="region">Курганская обл.</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Модель</label>
+            <select multiple>
+              <option>HP LaserJet M141a</option>
+              <option>HP M111</option>
+              <option>Canon LBP6030</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 3. Графики -->
+        <div class="stats-charts">
+          <!-- 3.1 Средний интервал по моделям -->
+          <div class="chart-container">
+            <canvas id="chart-intervals"></canvas>
+          </div>
+          <!-- 3.2 Соотношение поставок вовремя / с задержкой -->
+          <div class="chart-container">
+            <canvas id="chart-on-time"></canvas>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <script>
+    // Заглушечные данные
+    const models = ['M141a', 'M111', 'LBP6030'];
+    const avgIntervals = [12, 18, 14];        // в днях
+    const onTime = 120;
+    const delayed = 30;
+
+    // Бар‑график: средний интервал поставок
+    new Chart(document.getElementById('chart-intervals'), {
+      type: 'bar',
+      data: {
+        labels: models,
+        datasets: [{
+          label: 'Средний интервал (дней)',
+          data: avgIntervals,
+          backgroundColor: 'rgba(0,105,217,0.6)'
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Дни' } },
+          x: { title: { display: true, text: 'Модель' } }
+        }
+      }
+    });
+
+    // Круг‑график: своевременные vs задержанные поставки
+    new Chart(document.getElementById('chart-on-time'), {
+      type: 'pie',
+      data: {
+        labels: ['Вовремя', 'С задержкой'],
+        datasets: [{
+          data: [onTime, delayed],
+          backgroundColor: ['rgba(0,200,0,0.6)', 'rgba(200,0,0,0.6)']
+        }]
+      }
+    });
+  </script>
+</body>
+</html>
