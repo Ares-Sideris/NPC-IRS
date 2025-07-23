@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Инженерный центр — Сервисный лист</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">Инженерный центр</div>
+      <nav>
+        <a href="#" class="nav-item active">Заявки</a>
+        <a href="#" class="nav-item">Клиенты</a>
+        <a href="#" class="nav-item">Организации</a>
+        <a href="#" class="nav-item">Агенты</a>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <header class="header">
+        <input type="search" placeholder="Найти…" class="search">
+        <button class="btn-icon">⚡</button>
+        <button class="btn-primary">Сохранить</button>
+      </header>
+
+      <section class="content">
+        <h1>Сервисный лист: расходные материалы</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>№ п/п</th>
+              <th>Модель расходного материала</th>
+              <th>Кол‑во</th>
+              <th>Зав. № комплектующего</th>
+              <th>Действия</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><input type="text" placeholder="HP CF230A"></td>
+              <td><input type="number" value="2"></td>
+              <td><input type="text" placeholder="SN12345"></td>
+              <td class="actions">
+                <button class="btn-add">＋</button>
+                <button class="btn-remove">－</button>
+              </td>
+            </tr>
+            <!-- ещё строки -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
